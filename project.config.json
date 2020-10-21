@@ -1,7 +1,7 @@
 {
   "miniprogramRoot": "client/dist/",
   "cloudfunctionRoot": "cloud/functions/",
-  "projectname": "applets4",
+  "projectname": "mini-program",
   "description": "",
   "appid": "wx3eab13f8a1a6114b",
   "setting": {
@@ -29,11 +29,13 @@
       "disablePlugins": [],
       "outputPath": ""
     },
+    "enableEngineNative": false,
     "useIsolateContext": true,
     "useCompilerModule": true,
     "userConfirmedUseCompilerModuleSwitch": true,
     "packNpmManually": false,
-    "packNpmRelationList": []
+    "packNpmRelationList": [],
+    "minifyWXSS": true
   },
   "compileType": "miniprogram",
   "simulatorType": "wechat",

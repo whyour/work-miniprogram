@@ -38,7 +38,8 @@ export default class Index extends Component {
     month: [],
     marks: [],
     deleteWorkState: false,
-    checkedList: []
+    checkedList: [],
+    submitting: false
   };
 
   componentWillMount() {}
@@ -71,7 +72,9 @@ export default class Index extends Component {
 
   componentWillUnmount() {}
 
-  componentDidShow() {}
+  componentDidShow() {
+    this.setState({ addWorkModelHide: true });
+  }
 
   componentDidHide() {}
 
@@ -209,6 +212,7 @@ export default class Index extends Component {
       Taro.atMessage({ message: "输入参数有误", type: "error" });
       return;
     }
+    this.setState({ submitting: true });
     Taro.cloud
       .callFunction({
         name: "addWork",
@@ -232,6 +236,7 @@ export default class Index extends Component {
             date: this.state.currentDate,
             openId: this.state.openId
           });
+          this.setState({ submitting: false });
         }
       });
   };
@@ -257,6 +262,7 @@ export default class Index extends Component {
       Taro.atMessage({ message: "输入参数有误", type: "error" });
       return;
     }
+    this.setState({ submitting: true });
     const dateIds = this.state.checkedList.map(x => x._id);
     Taro.cloud
       .callFunction({
@@ -268,7 +274,11 @@ export default class Index extends Component {
       })
       .then((res: { result: any }) => {
         if (res.result) {
-          this.setState({ checkedList: [], deleteWorkState: false });
+          this.setState({
+            checkedList: [],
+            deleteWorkState: false,
+            submitting: false
+          });
           this.onMonthChange(this.state.currentDate);
         }
       });
@@ -311,6 +321,8 @@ export default class Index extends Component {
                   type="primary"
                   onClick={this.deleteWorks}
                   customStyle={{ margin: "8px 0" }}
+                  loading={this.state.submitting}
+                  disabled={this.state.submitting}
                 >
                   确认
                 </AtButton>
@@ -413,9 +425,21 @@ export default class Index extends Component {
                 )}
               </AtModalContent>
               <AtModalAction>
-                {" "}
-                <Button onClick={this.close}>取消</Button>{" "}
-                <Button onClick={this.submit}>确定</Button>{" "}
+                <View className="at-row modal-action">
+                  <View className="at-col">
+                    <AtButton onClick={this.close}>取消</AtButton>
+                  </View>
+                  <View className="at-col">
+                    <AtButton
+                      full
+                      loading={this.state.submitting}
+                      disabled={this.state.submitting}
+                      onClick={this.submit}
+                    >
+                      确定
+                    </AtButton>
+                  </View>
+                </View>
               </AtModalAction>
             </AtModal>
           </View>

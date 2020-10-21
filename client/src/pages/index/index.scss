@@ -70,3 +70,17 @@
   color: red;
   border-color: red;
 }
+
+.modal-action {
+  .at-button {
+    border: none;
+
+    &:not(.at-button--full) {
+      border-radius: 0 0 0 8px;
+    }
+
+    &.at-button--full {
+      border-left: 1px solid #d6e4ef;
+    }
+  }
+}
