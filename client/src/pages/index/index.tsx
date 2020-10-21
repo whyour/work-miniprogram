@@ -268,10 +268,10 @@ export default class Index extends Component {
       })
       .then((res: { result: any }) => {
         if (res.result) {
-          this.setState({ checkedList: [], deleteWorkState: false })
-          this.onMonthChange(this.state.currentDate)
+          this.setState({ checkedList: [], deleteWorkState: false });
+          this.onMonthChange(this.state.currentDate);
         }
-       })
+      });
   };
 
   render() {
@@ -333,23 +333,32 @@ export default class Index extends Component {
                   className="month-line"
                   items={this.state.month}
                 ></AtTimeline>
-                <AtButton
-                  className="add-work"
-                  onClick={this.addWork}
-                  type="secondary"
-                >
-                  添加工时
-                </AtButton>
-                <AtButton
-                  className="add-work danger"
-                  onClick={() => {
-                    this.setState({ deleteWorkState: true });
-                  }}
-                  type="secondary"
-                  customStyle={{ margin: "10px 0 40px" }}
-                >
-                  删除工时
-                </AtButton>
+                <View className="at-row at-row__justify--around">
+                  <View className="at-col">
+                    <Button
+                      className="add-work"
+                      onClick={this.addWork}
+                      type="primary"
+                      plain={true}
+                    >
+                      添加工时
+                    </Button>
+                  </View>
+                  {this.state.list.length > 1 && (
+                    <View className="at-col">
+                      <Button
+                        className="add-work danger"
+                        onClick={() => {
+                          this.setState({ deleteWorkState: true });
+                        }}
+                        type="warn"
+                        plain={true}
+                      >
+                        删除工时
+                      </Button>
+                    </View>
+                  )}
+                </View>
               </View>
             )}
             <AtModal

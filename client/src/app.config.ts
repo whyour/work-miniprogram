@@ -12,7 +12,7 @@ export default {
   tabBar: {
     color: '#444444',
     selectedColor: '#42853e',
-    backgroundColor: 'white',
+    backgroundColor: '#ffffff',
     list: [
       {
         pagePath: 'pages/index/index',
@@ -27,5 +27,7 @@ export default {
         selectedIconPath: 'images/med.png'
       }]
   },
-  cloud: true
+  cloud: true,
+  darkmode: false,
+  entryPagePath: 'pages/index/index'
 }
