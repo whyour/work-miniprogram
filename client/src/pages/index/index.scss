@@ -13,8 +13,19 @@
     margin-top: 30px;
   }
 
+  .delete-work-wrap {
+    display: block;
+    margin-top: 44px;
+  }
+
+  .timeline-work-wrap {
+    display: block;
+    margin-top: 30px;
+  }
+
   .at-checkbox__title {
     font-size: 28px;
+    line-height: 1;
   }
 
   .at-checkbox__icon-cnt {
@@ -24,8 +35,13 @@
   }
 
   .at-checkbox__option-wrap {
-    padding-top: 12px;
-    padding-bottom: 12px;
+    padding-top: 16px;
+    padding-bottom: 16px;
+  }
+
+  .at-checkbox__option-cnt {
+    display: flex;
+    align-items: center;
   }
 }
 
@@ -83,4 +99,8 @@
       border-left: 1px solid #d6e4ef;
     }
   }
+}
+
+.at-checkbox__icon-cnt {
+  margin-right: 15px;
 }

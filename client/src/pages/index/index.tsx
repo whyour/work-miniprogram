@@ -45,6 +45,7 @@ export default class Index extends Component {
   componentWillMount() {}
 
   async componentDidMount() {
+    this.setState({ loading: true });
     Taro.getStorage({ key: "openId" })
       .then(res => {
         const openId = res.data;
@@ -305,8 +306,8 @@ export default class Index extends Component {
                 <AtActivityIndicator></AtActivityIndicator>
               </View>
             ) : this.state.deleteWorkState ? (
-              <View style={{ display: "block" }}>
-                <AtCheckbox
+              <View className={this.state.deleteWorkState?'delete-work-wrap':''}>
+                  <AtCheckbox
                   options={[...this.state.list].slice(0, -1).map(x => {
                     return { value: x, label: x.title };
                   })}
@@ -336,7 +337,7 @@ export default class Index extends Component {
                 </AtButton>
               </View>
             ) : (
-              <View style={{ display: "block" }}>
+              <View className={!this.state.deleteWorkState?'timeline-work-wrap':''}>
                 <AtTimeline
                   className="timeline"
                   items={this.state.list}
